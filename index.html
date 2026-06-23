@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Engineering Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy:      #0A0E1A;
+      --blue:      #2D5BE3;
+      --cyan:      #00D4FF;
+      --white:     #F0EDE8;
+      --silver:    #8A9BB0;
+      --overlay:   rgba(10, 14, 26, 0.72);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100svh;
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    /* Video layer */
+    .hero__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -3;
+    }
+
+    /* Dark overlay */
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--overlay);
+      z-index: -2;
+    }
+
+    /* Blueprint grid — the signature element */
+    .hero__grid {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(0, 212, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.07) 1px, transparent 1px);
+      background-size: 48px 48px;
+      transform: skewY(-4deg) scaleY(1.12);
+      transform-origin: top left;
+    }
+
+    /* Cyan vignette at bottom edge */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      z-index: 1;
+    }
+
+    /* ── HERO CONTENT ── */
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1.5rem;
+      max-width: 820px;
+    }
+
+    .hero__eyebrow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .hero__eyebrow::before,
+    .hero__eyebrow::after {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--cyan);
+      opacity: 0.6;
+    }
+
+    .hero__name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .hero__name span {
+      color: var(--cyan);
+    }
+
+    .hero__title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      font-weight: 300;
+      color: var(--silver);
+      letter-spacing: 0.02em;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1.75rem;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .hero__cta:hover {
+      background: var(--cyan);
+      color: var(--navy);
+    }
+
+    .hero__ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero__cta svg {
+      transition: transform 0.2s ease;
+    }
+
+    .hero__cta:hover svg {
+      transform: translate(2px, -2px);
+    }
+
+    /* Scroll indicator */
+    .hero__scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero__scroll-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--silver);
+      opacity: 0.7;
+    }
+
+    .hero__scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--cyan), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.15); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(10, 14, 26, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+    }
+
+    .nav__logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav__logo span { color: var(--cyan); }
+
+    .nav__links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--silver);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav__links a:hover { color: var(--cyan); }
+
+    /* Active page highlight */
+    .nav__links a.active {
+      color: var(--cyan);
+    }
+
+    /* ── PLACEHOLDER CONTENT SECTION ── */
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 7rem 2rem;
+    }
+
+    .container {
+      display: flex;       /* Places child elements on the same line */
+      gap: 16px;           /* Adds space between the two divs */
+    }
+
+    /* The container that aligns items side-by-side */
+    .container {
+        display: flex;
+        align-items: center; /* Vertically centers the image and text */
+        gap: 20px;           /* Adds space between the image and text */
+        padding: 10px;
+    }
+
+    /* Responsive image sizing */
+    .container img {
+        max-width: 200px;    /* Limits the image size */
+        height: auto;        /* Keeps original aspect ratio */
+    }
+
+    /* Optional: layout text styling */
+    .text-content {
+        flex: 1;             /* Takes up the remaining horizontal space */
+    }
+
+    .section__label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+    }
+
+    .section__heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section__body {
+      color: var(--silver);
+      font-size: 1.05rem;
+      max-width: 60ch;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav__links { gap: 1.25rem; }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      .hero__scroll-line { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="nav__logo">M<span>F</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html" class="active">About</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero with video background -->
+  <section class="hero">
+
+    <!--
+      Replace the src below with your own video file.
+      For best results, use an .mp4 (H.264) at 1920×1080 or higher.
+      Keep it under ~15 MB for fast loading.
+    -->
+    <video
+      class="hero__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="your-poster-image.jpg"
+    >
+      <source src="slideshow-vid.mp4" type="video/mp4" />
+    </video>
+
+    <div class="hero__overlay"></div>
+    <div class="hero__grid"></div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow">Engineering Portfolio</p>
+      <h1 class="hero__name">Miles <span>Feheley</span></h1>
+      <p class="hero__title">Mechanical / Electrical / Aerospace</p>
+      <div class="hero__ctas">
+        <a href="work.html" class="hero__cta">
+          Work Experience
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="projects.html" class="hero__cta">
+          Project Experience
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <span class="hero__scroll-label">Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+
+  </section>
+
+  <!-- ── Add more sections below this line ── -->
+  <section class="section" id="about">
+    <p class="section__label">About</p>
+    <h2 class="section__heading">Hi, I'm Miles. I make things.</h2>
+    <p class="section__body" style="padding-bottom: 50px">
+      Thanks for checking out my portfolio! Whether you're a recruiter, fellow engineer, friend, or lost stranger, I hope you enjoy the ride. &ensp;
+    </p>
+    <div style="display: flex; justify-content: center; padding-bottom: 50px">
+      <img src="dream-job-chart.png" alt="Chart Showing Dream Job Progression" width="1139" height="240">
+    </div>
+
+    <div class="container">
+      <div style="border-style:solid; border-width:medium; border-color: #00D4FF; padding:20px; width:400px; height:220px">
+        <h2 style="padding-bottom:10px">Strengths:</h2>
+        <ul style="padding-left:20px;">
+          <li>Addicted to Microcontroller Projects</li>
+          <li>Fastest Benchy print you'll ever see</li>
+          <li>Great playlists for any occasion</li>
+          <li>Love taking things apart to see how they work</li>
+        </ul>
+      </div>
+      <div style="border-style:solid; border-width:medium; border-color: #00D4FF; padding:20px; width:400px; height:220px">
+        <h2 style="padding-bottom:10px">Weaknesses:</h2>
+        <ul style="padding-left:20px;">
+          <li>Addicted to Microcontroller Projects</li>
+          <li>Not a U.S. Citizen (yet)</li>
+          <li>Toronto Maple Leafs Fan</li>
+          <li>Occasionally break things while taking them apart</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+</body>
+</html>

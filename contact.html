@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Miles Feheley</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy:      #0A0E1A;
+      --blue:      #2D5BE3;
+      --cyan:      #00D4FF;
+      --white:     #F0EDE8;
+      --silver:    #8A9BB0;
+      --overlay:   rgba(10, 14, 26, 0.72);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(10, 14, 26, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+    }
+
+    .nav__logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav__logo span { color: var(--cyan); }
+
+    .nav__links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--silver);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav__links a:hover { color: var(--cyan); }
+    .nav__links a.active { color: var(--cyan); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 10rem 3rem 4rem;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+    }
+
+    .page-header__eyebrow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .page-header__eyebrow::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--cyan);
+      opacity: 0.6;
+    }
+
+    .page-header__title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--white);
+    }
+
+    .page-header__title span { color: var(--cyan); }
+
+    /* ── CONTENT AREA ── */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem 7rem;
+    }
+
+    /* ── SECTION BLOCKS ── */
+    .section {
+      margin-bottom: 5rem;
+    }
+
+    .section__label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+    }
+
+    .section__heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section__body {
+      color: var(--silver);
+      font-size: 1.05rem;
+      max-width: 60ch;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── CONTACT FORM FIELDS ── */
+    .contact-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
+
+    .field-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      flex: 1;
+    }
+
+    .field label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--silver);
+    }
+
+    .field input,
+    .field textarea {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+      width: 100%;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(138, 155, 176, 0.5);
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--cyan);
+    }
+
+    .field textarea {
+      height: 140px;
+    }
+
+    /* ── MAIL BUTTON ── */
+    .mail-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1.75rem;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .mail-btn:hover {
+      background: var(--cyan);
+      color: var(--navy);
+    }
+
+    .mail-btn svg {
+      transition: transform 0.2s ease;
+    }
+
+    .mail-btn:hover svg {
+      transform: translate(2px, -2px);
+    }
+
+    .mail-note {
+      margin-top: 0.85rem;
+      font-size: 0.8rem;
+      color: var(--silver);
+      opacity: 0.6;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      opacity: 0.15;
+      margin: 4rem 0;
+    }
+
+    .hero__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1.75rem;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .hero__cta:hover {
+      background: var(--cyan);
+      color: var(--navy);
+    }
+
+    .hero__ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero__cta svg {
+      transition: transform 0.2s ease;
+    }
+
+    .hero__cta:hover svg {
+      transform: translate(2px, -2px);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav__links { gap: 1.25rem; }
+      .page-header { padding: 8rem 1.5rem 3rem; }
+      .content { padding: 3rem 1.5rem 5rem; }
+      .field-row { flex-direction: column; }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav__logo">M<span>F</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html">About</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-header">
+    <p class="page-header__eyebrow">Miles Feheley</p>
+    <h1 class="page-header__title">Get In <span>Touch</span></h1>
+  </header>
+
+  <main class="content">
+
+    <div class="section">
+      <p class="section__label">Best</p>
+      <h2 class="section__heading">Email Me</h2>
+      <p class="section__body">
+        I check my email pretty often, so I'll get back to you quickly.
+        Fill in your details below, then hit the button to open your mail app
+        with everything pre-loaded.
+      </p>
+
+      <!-- Fields for name, return email, and message -->
+      <div class="contact-fields">
+
+        <div class="field-row">
+          <div class="field">
+            <label for="sender-name">Your Name</label>
+            <input type="text" id="sender-name" placeholder="Ex. Bo Nix" />
+          </div>
+          <div class="field">
+            <label for="sender-email">Your Email</label>
+            <input type="email" id="sender-email" placeholder="Ex. bonix@gmail.com" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="sender-message">Message</label>
+          <textarea id="sender-message" placeholder="Ex. Hi I'm Broncos QB Bo Nix and I want to contact you."></textarea>
+        </div>
+
+      </div>
+
+      <!-- Button opens native mail app with fields pre-filled -->
+      <a class="mail-btn" id="mail-btn" href="#">
+        Open Mail App
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <p class="mail-note">Opens your default mail app with your message pre-filled.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <p class="section__label">Also Good</p>
+      <h2 class="section__heading">Find Me on LinkedIn</h2>
+      <p style="padding-bottom:20px;">I certainly need more LinkedIn connections, so while you're here, shoot me a connection request!</p>
+      <a href="https://www.linkedin.com/in/miles-feheley-303774276/" target="_blank" class="hero__cta" style="width:180px; display:flex;  margin-right:auto;">
+        My LinkedIn
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+  </main>
+
+  <script>
+    const btn = document.getElementById('mail-btn');
+    const TO = 'milesfeheley@gmail.com';
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const name    = document.getElementById('sender-name').value.trim();
+      const email   = document.getElementById('sender-email').value.trim();
+      const message = document.getElementById('sender-message').value.trim();
+
+      const subject = encodeURIComponent(
+        'Portfolio Contact' + (name ? ' from ' + name : '')
+      );
+
+      let body = '';
+      if (name)    body += 'Name: ' + name + '\n';
+      if (email)   body += 'Reply-to: ' + email + '\n';
+      if (message) body += '\n' + message;
+
+      window.location.href = 'mailto:' + TO
+        + '?subject=' + subject
+        + '&body=' + encodeURIComponent(body);
+    });
+  </script>
+
+</body>
+</html>

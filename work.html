@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — Miles Feheley</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy:      #0A0E1A;
+      --blue:      #2D5BE3;
+      --cyan:      #00D4FF;
+      --white:     #F0EDE8;
+      --silver:    #8A9BB0;
+      --overlay:   rgba(10, 14, 26, 0.72);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(10, 14, 26, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+    }
+
+    .nav__logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav__logo span { color: var(--cyan); }
+
+    .nav__links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--silver);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav__links a:hover { color: var(--cyan); }
+    .nav__links a.active { color: var(--cyan); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 10rem 3rem 4rem;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+    }
+
+    .page-header__eyebrow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .page-header__eyebrow::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--cyan);
+      opacity: 0.6;
+    }
+
+    .page-header__title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--white);
+    }
+
+    .page-header__title span { color: var(--cyan); }
+
+    /* ── CONTENT AREA ── */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem 7rem;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      opacity: 0.15;
+      margin: 3.5rem 0;
+    }
+
+    /* ── EXPERIENCE ENTRY ── */
+    .experience {
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    /* Left column: logo */
+    .experience__logo {
+      flex-shrink: 0;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .experience__logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Right column: text */
+    .experience__body {
+      flex: 1;
+    }
+
+    /* Role title — largest */
+    .experience__role {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.3rem, 6vw, 2.75rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    /* Company name — medium */
+    .experience__company {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--cyan);
+      letter-spacing: 0.02em;
+    }
+
+    /* Date range — smallest */
+    .experience__dates {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--silver);
+      opacity: 0.7;
+    }
+
+    /* Optional description bullets */
+    .experience__desc {
+      color: var(--silver);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 60ch;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav__links { gap: 1.25rem; }
+      .page-header { padding: 8rem 1.5rem 3rem; }
+      .content { padding: 3rem 1.5rem 5rem; }
+      .experience { flex-direction: column; gap: 1.25rem; }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav__logo">M<span>F</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html">About</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-header">
+    <p class="page-header__eyebrow">Miles Feheley</p>
+    <h1 class="page-header__title">Work <span>Experience</span></h1>
+  </header>
+
+  <main class="content">
+
+    <div class="experience">
+      <div class="experience__logo">
+        <img src="fablab-logo.png" alt="UVM FabLab logo" border="none">
+      </div>
+      <div class="experience__body">
+        <p class="experience__company">UVM FabLab</p>
+        <h2 class="experience__role">Operations Manager</h2>
+        <p class="experience__dates">Jan 2023 — Present</p>
+        <p class="experience__desc" style="padding-bottom:50px;">
+          The UVM FabLab is the primary fabrication facility for UVM's College of Engineering and Mathematical Sciences.
+          In this role, I was placed in charge of all operations of the lab. This included managing student staff,
+          coordinating projects with professors and researchers, managing the lab budget, ensuring the lab was stocked,
+          ensuring safety within the lab, and defining lab policy to ensure high speed and quality. I was additionally
+          tasked with meeting sustainability requirements set by the university, and onboarding new staff. <br> <br>
+          While I was in this role, the FabLab's output increased by 33% per year. Additionally, new systems were
+          introduced to the lab, such as a filament recycling system and a fully automated Self-Serve printing station.
+        </p>
+        <h2 class="experience__role">Lab Technician</h2>
+        <p class="experience__dates">March 2023 — December 2023</p>
+        <p class="experience__desc" style="padding-bottom:50px;">
+          Prior to being promoted to operations Manager, I was one of the staff members tasked with creating tickets,
+          setting up print jobs, running laser cuts, and completing post-processing on parts. I also acted as a
+          froward-facing staff member, and worked with students to complete projects and answer questions. I completed
+          frequent preventative or reparative maintenance on assigned machines.
+        </p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="experience">
+      <div class="experience__logo">
+        <img src="GRVASlogo.png" alt="GRVAS logo" border="none">
+      </div>
+      <div class="experience__body">
+        <p class="experience__company">Glen Ridge Volunteer Ambulance Squad</p>
+        <h2 class="experience__role">Emergency Medical Technician</h2>
+        <p class="experience__dates">March 2020 — June 2025</p>
+        <p class="experience__desc" style="padding-bottom:50px;">
+          While not being direct engineering experience, I gained valuable skills in this role that are extremely
+          relevant to the field of engineering. While working as an EMT, I delivered emergency medical services to over
+          300 patients in a wide variety of circumstances. Thing position allowed me to refine stress management and
+          patient interaction skills, and learn how to communicate with a team effectively.
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — Miles Feheley</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy:      #0A0E1A;
+      --blue:      #2D5BE3;
+      --cyan:      #00D4FF;
+      --white:     #F0EDE8;
+      --silver:    #8A9BB0;
+      --overlay:   rgba(10, 14, 26, 0.72);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(10, 14, 26, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+    }
+
+    .nav__logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav__logo span { color: var(--cyan); }
+
+    .nav__links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--silver);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav__links a:hover { color: var(--cyan); }
+
+    .nav__links a.active { color: var(--cyan); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 10rem 3rem 4rem;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+    }
+
+    .page-header__eyebrow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .page-header__eyebrow::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--cyan);
+      opacity: 0.6;
+    }
+
+    .page-header__title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--white);
+    }
+
+    .page-header__title span { color: var(--cyan); }
+
+    /* ── CONTENT AREA ── */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem 7rem;
+    }
+
+    /* ── SECTION BLOCKS (reusable) ── */
+    .section {
+      margin-bottom: 5rem;
+    }
+
+    .section__label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+    }
+
+    .section__heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section__body {
+      color: var(--silver);
+      font-size: 1.05rem;
+      max-width: 60ch;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      opacity: 0.15;
+      margin: 4rem 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav__links { gap: 1.25rem; }
+      .page-header { padding: 8rem 1.5rem 3rem; }
+      .content { padding: 3rem 1.5rem 5rem; }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       NAV — Change the "active" class to match
+       whichever page this file represents.
+       ══════════════════════════════════════════ -->
+  <nav>
+    <a href="index.html" class="nav__logo">M<span>F</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html">About</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       PAGE HEADER — Update the eyebrow label
+       and title to match this page.
+       ══════════════════════════════════════════ -->
+  <header class="page-header">
+    <p class="page-header__eyebrow">Miles Feheley</p>
+    <h1 class="page-header__title">Resume</h1>
+  </header>
+
+  <!-- ══════════════════════════════════════════
+       CONTENT — Add your sections below.
+       ══════════════════════════════════════════ -->
+  <main class="content">
+    <!--
+    <div class="section">
+      <p class="section__label">Label</p>
+      <h2 class="section__heading">Section heading goes here</h2>
+      <p class="section__body">Your content goes here.</p>
+    </div>
+    -->
+    <object data="mfeheley_resume_2026.pdf" type="application/pdf" width="100%" height="1120px">
+      <p>Your browser does not support embedded PDFs.
+         <a href="your-file.pdf">Download the PDF instead</a>.
+      </p>
+    </object>
+
+    <div class="divider"></div>
+
+
+
+  </main>
+
+</body>
+</html>
